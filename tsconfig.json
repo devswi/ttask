@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["es2016", "dom", "DOM.Iterable"],
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "removeComments": false,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      },
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "dashesOnly"
+        }
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/__tests__/*",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
+}
