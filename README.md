@@ -1,3 +1,5 @@
-# ttask
+# TTask
 
-This project is a to-do list application, it will include mobile apps written by React Native, web application written by React. It also includes a nodejs server-side application.
+这将会是一个跨平台 Todo list 应用
+
+唯一愿望 **不要烂尾!!!**

@@ -1,11 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-
 module.exports = {
-    mode: isDevelopment ? 'development' : 'production',
-    entry: './index.tsx',
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, '../dist'),
