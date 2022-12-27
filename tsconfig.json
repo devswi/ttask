@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "esModuleInterop": true,
-    "removeComments": false,
+    "removeComments": true,
     "isolatedModules": true,
     "skipLibCheck": true,
     "declaration": true,
@@ -27,11 +27,5 @@
       }
     ]
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/__tests__/*",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "exclude": ["node_modules", "dist", "**/__tests__/*", "**/*.spec.ts", "**/*.test.ts"]
 }
