@@ -1,6 +1,8 @@
 const { PUBLIC_PATH } = require('./constants');
+const { merge } = require('webpack-merge');
+const base = require('./webpack.base');
 
-module.exports = {
+module.exports = merge(base, {
     mode: 'development',
     output: {
         filename: '[name].bundle.js',
@@ -16,4 +18,4 @@ module.exports = {
             overlay: { warnings: false, errors: true },
         },
     },
-};
+});

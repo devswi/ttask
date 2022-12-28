@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es6",
+    "target": "ES6",
     "module": "commonjs",
-    "lib": ["es2016", "dom", "DOM.Iterable"],
+    "lib": ["es6", "dom", "DOM.Iterable"],
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "esModuleInterop": true,
-    "removeComments": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
     "resolveJsonModule": true,
     "strict": true,
+    "paths": {},
     "plugins": [
       {
         "name": "typescript-styled-plugin"
@@ -26,6 +23,5 @@
         }
       }
     ]
-  },
-  "exclude": ["node_modules", "dist", "**/__tests__/*", "**/*.spec.ts", "**/*.test.ts"]
+  }
 }
