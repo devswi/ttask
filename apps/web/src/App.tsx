@@ -1,4 +1,4 @@
-import cat from '@images/cat.jpeg';
+import { cat } from 'assets/images';
 
 const App = () => {
     return (

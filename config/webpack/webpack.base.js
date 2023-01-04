@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { APP_PATH } = require('./constants');
 
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
     resolve: {
         modules: [APP_PATH, 'node_modules'],
         extensions: ['.js', '.ts', '.tsx'],
+        plugins: [new TsconfigPathsPlugin()],
     },
     module: {
         rules: [
