@@ -26,6 +26,10 @@ module.exports = {
                     rootMode: 'upward',
                 },
             },
+            {
+                test: /\.(png|jpe?g|gif|svg|webp)$/,
+                type: 'asset/resource',
+            },
         ],
     },
 };
