@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { APP_PATH } = require('./constants');
 
 module.exports = {
@@ -11,6 +12,9 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             template: './public/index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[hash:8].css',
         }),
     ],
     resolve: {
@@ -32,7 +36,7 @@ module.exports = {
             {
                 test: /\.css/,
                 use: [
-                    require.resolve('style-loader'),
+                    MiniCssExtractPlugin.loader,
                     require.resolve('css-loader'),
                     require.resolve('postcss-loader'),
                 ],
