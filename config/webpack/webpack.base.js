@@ -6,6 +6,7 @@ const { APP_PATH } = require('./constants');
 module.exports = {
     output: {
         path: path.join(APP_PATH, './dist'),
+        clean: true,
     },
     plugins: [
         new HTMLWebpackPlugin({
@@ -29,8 +30,31 @@ module.exports = {
                 },
             },
             {
+                test: /\.css/,
+                use: [
+                    require.resolve('style-loader'),
+                    require.resolve('css-loader'),
+                    require.resolve('postcss-loader'),
+                ],
+            },
+            {
                 test: /\.(png|jpe?g|gif|svg|webp)$/,
-                type: 'asset/resource',
+                type: 'asset',
+                generator: {
+                    filename: 'static/images/[hash:8][ext]',
+                },
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 4 * 1024, // 4kb
+                    },
+                },
+            },
+            {
+                test: /\.(eot|ttf|otf|woff2?)$/i,
+                type: 'asset',
+                generator: {
+                    filename: 'static/fonts/[name][hash:8][ext]',
+                },
             },
         ],
     },

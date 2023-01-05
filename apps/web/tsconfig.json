@@ -3,9 +3,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "assets/*": ["./src/assets/*"]
+      "assets/*": ["./public/static/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@pages/*": ["./src/pages/*"]
     }
   },
   "exclude": ["node_modules", "**/*.test.ts"],
-  "include": ["src", "types/*.d.ts"]
+  "include": ["src", "types/*.d.ts", "public/**/*.ts"]
 }
