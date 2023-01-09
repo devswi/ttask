@@ -6,7 +6,7 @@ function getPages(root) {
     return path.join(root, './src/pages');
 }
 
-async function generateChunks(dir, parent, store) {
+async function generateConfigs(dir, parent, store) {
     return fs.promises
         .stat(dir)
         .then(res => {
@@ -18,7 +18,7 @@ async function generateChunks(dir, parent, store) {
             // 过滤掉非目录
             const folders = items.filter(item => {
                 // 非 _ 开头
-                if (item.match(/^(?!_)(.*)/)) {
+                if (/^(?!_)(.*)/.test(item)) {
                     const res = item.match(/(.*)(\.tsx?|jsx?)$/);
                     if (res) {
                         const [full, filename] = res;
@@ -38,7 +38,7 @@ async function generateChunks(dir, parent, store) {
             return folders.reduce(
                 (prev, next) =>
                     prev.then(res =>
-                        generateChunks(path.join(dir, next), parent.concat(next), res || newStore),
+                        generateConfigs(path.join(dir, next), parent.concat(next), res || newStore),
                     ),
                 Promise.resolve(),
             );
@@ -52,7 +52,7 @@ async function generateChunks(dir, parent, store) {
  * 2. 生成 HTMLWebpackPlugin 的配置
  */
 async function dynamicWebpackConfig(root) {
-    const res = await generateChunks(getPages(root), [], {});
+    const res = await generateConfigs(getPages(root), [], {});
     let templates = [];
     for (const chunk of Object.keys(res)) {
         templates.push(

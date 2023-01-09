@@ -6,7 +6,8 @@ module.exports = async () => {
     return merge(base, {
         mode: 'production',
         output: {
-            filename: '[name].[contenthash].bundle.js',
+            filename: 'static/chunks/[name].[contenthash:8].bundle.js',
         },
+        optimization: {},
     });
 };

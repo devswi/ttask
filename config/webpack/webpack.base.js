@@ -7,6 +7,7 @@ const { APP_PATH } = require('./constants');
 
 const generateConfigs = async () => {
     const { entry, templates } = await dynamicWebpackConfig(process.cwd());
+    const isDevelopment = process.env.NODE_ENV === 'development';
     return {
         entry,
         output: {
@@ -16,7 +17,7 @@ const generateConfigs = async () => {
         plugins: [
             ...templates,
             new MiniCssExtractPlugin({
-                filename: 'css/[name].[contenthash:8].css',
+                filename: `static/styles/[name]${isDevelopment ? '' : '.[contenthash:8]'}.css`,
             }),
             new ForkTsCheckerWebpackPlugin(),
         ],
@@ -24,6 +25,28 @@ const generateConfigs = async () => {
             modules: [APP_PATH, 'node_modules'],
             extensions: ['.js', '.ts', '.tsx'],
             plugins: [new TsconfigPathsPlugin()],
+        },
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    style: {
+                        name: 'style',
+                        test: /\.css$/,
+                        chunks: 'all',
+                        enforce: true,
+                    },
+                    vendor: {
+                        name: 'vendor',
+                        test: /[\\/]node_modules[\\/]/,
+                        chunks: 'all',
+                        minChunks: 3,
+                        reuseExistingChunk: true,
+                    },
+                },
+            },
+            runtimeChunk: {
+                name: 'runtime',
+            },
         },
         module: {
             rules: [
@@ -48,7 +71,9 @@ const generateConfigs = async () => {
                     test: /\.(png|jpe?g|gif|svg|webp)$/,
                     type: 'asset',
                     generator: {
-                        filename: 'static/images/[contenthash:8][ext]',
+                        filename: `static/images/[name]${
+                            isDevelopment ? '' : '.[contenthash:8]'
+                        }[ext]`,
                     },
                     parser: {
                         dataUrlCondition: {
@@ -60,7 +85,7 @@ const generateConfigs = async () => {
                     test: /\.(eot|ttf|otf|woff2?)$/i,
                     type: 'asset',
                     generator: {
-                        filename: 'static/fonts/[name][hash:8][ext]',
+                        filename: 'static/fonts/[name].[hash:8][ext]',
                     },
                 },
             ],

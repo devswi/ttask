@@ -8,7 +8,7 @@ module.exports = async () => {
     return merge(base, {
         mode: 'development',
         output: {
-            filename: '[name].bundle.js',
+            filename: 'static/chunks/[name].bundle.js',
         },
         plugins: [
             new BundleAnalyzerPlugin({
