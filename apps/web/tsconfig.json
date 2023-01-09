@@ -5,7 +5,9 @@
     "paths": {
       "assets/*": ["./public/static/*"],
       "@styles/*": ["./src/styles/*"],
-      "@pages/*": ["./src/pages/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@utils": ["./src/utils"]
     }
   },
   "exclude": ["node_modules", "**/*.test.ts"],

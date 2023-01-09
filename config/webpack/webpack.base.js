@@ -1,65 +1,71 @@
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { dynamicWebpackConfig } = require('../scripts/webpack-tools');
 const { APP_PATH } = require('./constants');
 
-module.exports = {
-    output: {
-        path: path.join(APP_PATH, './dist'),
-        clean: true,
-    },
-    plugins: [
-        new HTMLWebpackPlugin({
-            template: './public/index.html',
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash:8].css',
-        }),
-    ],
-    resolve: {
-        modules: [APP_PATH, 'node_modules'],
-        extensions: ['.js', '.ts', '.tsx'],
-        plugins: [new TsconfigPathsPlugin()],
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(ts|tsx)$/,
-                exclude: /node_modules/,
-                loader: require.resolve('babel-loader'),
-                options: {
-                    cacheDirectory: true,
-                    rootMode: 'upward',
-                },
-            },
-            {
-                test: /\.css/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    require.resolve('css-loader'),
-                    require.resolve('postcss-loader'),
-                ],
-            },
-            {
-                test: /\.(png|jpe?g|gif|svg|webp)$/,
-                type: 'asset',
-                generator: {
-                    filename: 'static/images/[hash:8][ext]',
-                },
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 4 * 1024, // 4kb
+const generateConfigs = async () => {
+    const { entry, templates } = await dynamicWebpackConfig(process.cwd());
+    return {
+        entry,
+        output: {
+            path: path.join(APP_PATH, './dist'),
+            clean: true,
+        },
+        plugins: [
+            ...templates,
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+            }),
+            new ForkTsCheckerWebpackPlugin(),
+        ],
+        resolve: {
+            modules: [APP_PATH, 'node_modules'],
+            extensions: ['.js', '.ts', '.tsx'],
+            plugins: [new TsconfigPathsPlugin()],
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(ts|tsx)$/,
+                    exclude: /node_modules/,
+                    loader: require.resolve('babel-loader'),
+                    options: {
+                        cacheDirectory: true,
+                        rootMode: 'upward',
                     },
                 },
-            },
-            {
-                test: /\.(eot|ttf|otf|woff2?)$/i,
-                type: 'asset',
-                generator: {
-                    filename: 'static/fonts/[name][hash:8][ext]',
+                {
+                    test: /\.css/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        require.resolve('css-loader'),
+                        require.resolve('postcss-loader'),
+                    ],
                 },
-            },
-        ],
-    },
+                {
+                    test: /\.(png|jpe?g|gif|svg|webp)$/,
+                    type: 'asset',
+                    generator: {
+                        filename: 'static/images/[contenthash:8][ext]',
+                    },
+                    parser: {
+                        dataUrlCondition: {
+                            maxSize: 4 * 1024, // 4kb
+                        },
+                    },
+                },
+                {
+                    test: /\.(eot|ttf|otf|woff2?)$/i,
+                    type: 'asset',
+                    generator: {
+                        filename: 'static/fonts/[name][hash:8][ext]',
+                    },
+                },
+            ],
+        },
+    };
 };
+
+module.exports = generateConfigs;

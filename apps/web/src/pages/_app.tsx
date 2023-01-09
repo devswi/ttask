@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-
 import '@styles/tailwindcss.css';
 
 interface AppProps {
@@ -7,7 +6,8 @@ interface AppProps {
 }
 
 const App = ({ children }: AppProps) => {
-    return <div>{children}</div>;
+    // TODO: Add global context
+    return <>{children}</>;
 };
 
 export { type AppProps, App as default };
