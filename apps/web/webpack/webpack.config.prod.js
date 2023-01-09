@@ -1,5 +1,7 @@
 const { merge } = require('webpack-merge');
-const base = require('./webpack.config.base');
-const prod = require('../../../config/webpack/webpack.config.prod');
+const generateProdConfig = require('../../../config/webpack/webpack.config.prod');
 
-module.exports = merge(base, prod, {});
+module.exports = async () => {
+    const prod = await generateProdConfig();
+    return merge(prod, {});
+};

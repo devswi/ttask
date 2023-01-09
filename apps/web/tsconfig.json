@@ -1,4 +1,15 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src/**/*"]
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "assets/*": ["./public/static/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@utils": ["./src/utils"]
+    }
+  },
+  "exclude": ["node_modules", "**/*.test.ts"],
+  "include": ["src", "types/*.d.ts", "public/**/*.ts"]
 }

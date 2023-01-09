@@ -1,5 +1,11 @@
 const { merge } = require('webpack-merge');
-const base = require('./webpack.config.base');
-const dev = require('../../../config/webpack/webpack.config.dev');
+const generateDevConfig = require('../../../config/webpack/webpack.config.dev');
 
-module.exports = merge(base, dev, {});
+module.exports = async () => {
+    const dev = await generateDevConfig();
+    return merge(dev, {
+        resolve: {
+            alias: {},
+        },
+    });
+};
