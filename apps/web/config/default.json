@@ -1,3 +1,4 @@
 {
-  "appName": "web"
+  "app_name": "web",
+  "webpack_target": "browserslist"
 }

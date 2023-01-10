@@ -5,15 +5,17 @@ const generateBaseConfig = require('./webpack.base');
 
 module.exports = async () => {
     const base = await generateBaseConfig();
+    const { port, analyzerPort, webpack_target: target } = require('config');
+    const filename = target === 'node' ? 'server.js' : 'static/chunks/[name].bundle.js';
     return merge(base, {
         mode: 'development',
         output: {
-            filename: 'static/chunks/[name].bundle.js',
+            filename,
         },
         plugins: [
             new BundleAnalyzerPlugin({
                 openAnalyzer: false,
-                analyzerPort: 8001,
+                analyzerPort,
                 logLevel: 'silent',
             }),
         ],
@@ -23,7 +25,7 @@ module.exports = async () => {
                 directory: PUBLIC_PATH,
             },
             allowedHosts: ['local.ttask.com'],
-            port: 8484,
+            port,
             client: {
                 logging: 'info',
                 overlay: { warnings: false, errors: true },

@@ -5,11 +5,15 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { dynamicWebpackConfig } = require('../scripts/webpack-tools');
 const { APP_PATH } = require('./constants');
 
+const commonWebpackConfig = {};
+
 const generateConfigs = async () => {
     const { entry, templates } = await dynamicWebpackConfig(process.cwd());
-    const isDevelopment = process.env.NODE_ENV === 'development';
+    const { app_name: appName, webpack_target: target } = require('config');
     return {
+        name: appName,
         entry,
+        target,
         output: {
             path: path.join(APP_PATH, './dist'),
             clean: true,
@@ -17,7 +21,7 @@ const generateConfigs = async () => {
         plugins: [
             ...templates,
             new MiniCssExtractPlugin({
-                filename: `static/styles/[name]${isDevelopment ? '' : '.[contenthash:8]'}.css`,
+                filename: 'static/styles/[name].[contenthash:8].css',
             }),
             new ForkTsCheckerWebpackPlugin(),
         ],
@@ -71,9 +75,7 @@ const generateConfigs = async () => {
                     test: /\.(png|jpe?g|gif|svg|webp)$/,
                     type: 'asset',
                     generator: {
-                        filename: `static/images/[name]${
-                            isDevelopment ? '' : '.[contenthash:8]'
-                        }[ext]`,
+                        filename: 'static/images/[name].[contenthash:8][ext]',
                     },
                     parser: {
                         dataUrlCondition: {

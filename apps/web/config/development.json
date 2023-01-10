@@ -1,0 +1,5 @@
+{
+  "port": 8484,
+  "analyzerPort": 8001,
+  "allowedHosts": ["local.ttask.com"]
+}

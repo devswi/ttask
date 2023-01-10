@@ -17,20 +17,15 @@ async function generateConfigs(dir, parent, store) {
             let newStore = store;
             // 过滤掉非目录
             const folders = items.filter(item => {
-                // 非 _ 开头
-                if (/^(?!_)(.*)/.test(item)) {
-                    const res = item.match(/(.*)(\.tsx?|jsx?)$/);
-                    if (res) {
-                        const [full, filename] = res;
-                        const chunk = parent.concat(filename).join('/');
-                        newStore = {
-                            ...newStore,
-                            [chunk]: path.join(dir, full),
-                        };
-                        return false;
-                    }
-                    return true;
-                }
+                if (/^_/.test(item)) return false;
+                const res = item.match(/(.*)(\.tsx?|jsx?)$/);
+                if (!res) return true;
+                const [full, filename] = res;
+                const chunk = parent.concat(filename).join('/');
+                newStore = {
+                    ...newStore,
+                    [chunk]: path.join(dir, full),
+                };
                 return false;
             });
             if (folders.length === 0) return newStore;
