@@ -12,9 +12,6 @@
     "strict": true,
     "plugins": [
       {
-        "name": "typescript-styled-plugin"
-      },
-      {
         "name": "typescript-plugin-css-modules",
         "options": {
           "classnameTransform": "dashesOnly"

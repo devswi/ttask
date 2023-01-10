@@ -1,7 +1,13 @@
 const { merge } = require('webpack-merge');
-const generateProdConfig = require('../../../config/webpack/webpack.config.prod');
+const generateBaseConfig = require('./webpack.base');
 
 module.exports = async () => {
-    const prod = await generateProdConfig();
-    return merge(prod, {});
+    const base = await generateBaseConfig();
+    return merge(base, {
+        mode: 'production',
+        output: {
+            filename: 'static/chunks/[name].[contenthash:8].bundle.js',
+        },
+        optimization: {},
+    });
 };

@@ -5,15 +5,11 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { dynamicWebpackConfig } = require('../scripts/webpack-tools');
 const { APP_PATH } = require('./constants');
 
-const commonWebpackConfig = {};
-
 const generateConfigs = async () => {
     const { entry, templates } = await dynamicWebpackConfig(process.cwd());
-    const { app_name: appName, webpack_target: target } = require('config');
     return {
-        name: appName,
+        name: 'web',
         entry,
-        target,
         output: {
             path: path.join(APP_PATH, './dist'),
             clean: true,

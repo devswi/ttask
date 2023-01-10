@@ -1,11 +1,12 @@
 const { merge } = require('webpack-merge');
-const generateDevConfig = require('../../../config/webpack/webpack.config.dev');
+const NodemonPlugin = require('nodemon-webpack-plugin');
+const base = require('./webpack.base');
 
-module.exports = async () => {
-    const dev = await generateDevConfig();
-    return merge(dev, {
-        resolve: {
-            alias: {},
-        },
-    });
-};
+module.exports = merge(base, {
+    mode: 'development',
+    watch: true,
+    plugins: [new NodemonPlugin()],
+    resolve: {
+        alias: {},
+    },
+});

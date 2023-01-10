@@ -1,5 +1,15 @@
-function sayHello() {
-    console.log('hello world');
-}
+import express, { Request, Response } from 'express';
 
-export { sayHello };
+const app = express();
+
+const { PORT = 3000 } = process.env;
+
+app.get('/', (_req: Request, res: Response) => {
+    res.send({
+        message: 'hello world',
+    });
+});
+
+app.listen(PORT, () => {
+    console.log('server started at http://localhost:', PORT);
+});
