@@ -7,7 +7,7 @@ module.exports = {
     name: 'server',
     target: 'node',
     entry: {
-        server: path.join(process.cwd(), './src/index.ts'),
+        server: path.join(process.cwd(), './src/app.ts'),
     },
     output: {
         path: path.join(process.cwd(), './dist'),
