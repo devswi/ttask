@@ -1,13 +1,12 @@
-import Koa, { Context, Next } from 'koa';
+import Koa from 'koa';
+import router from './routes';
 
 const app = new Koa();
 
 const { PORT = 3000 } = process.env;
 
-app.use(async (ctx: Context, _next: Next) => {
-    ctx.body = 'Hello world';
-});
-
-app.listen(PORT, () => {
-    console.log('Server running at http://localhost:', PORT);
-});
+app.use(router.routes())
+    .use(router.allowedMethods())
+    .listen(PORT, () => {
+        console.log('Server running at http://localhost:', PORT);
+    });

@@ -2,7 +2,7 @@ const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { dynamicWebpackConfig } = require('../scripts/webpack-tools');
+const { dynamicWebpackConfig } = require('../utils/webpack-tools');
 const { APP_PATH } = require('./constants');
 
 const generateConfigs = async () => {
