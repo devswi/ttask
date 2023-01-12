@@ -1,11 +1,16 @@
+import { Context } from 'koa';
 import Router from '@koa/router';
-import routerV1 from './v1';
 
 // 统一添加路由 /api 前缀
 const router = new Router({
     prefix: '/api',
 });
 
-router.use('/v1', routerV1.routes(), routerV1.allowedMethods());
+router.get('/', (ctx: Context) => {
+    ctx.body = {
+        greeting: 'Hello world',
+    };
+    ctx.status = 200;
+});
 
 export default router;

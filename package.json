@@ -6,7 +6,8 @@
   "scripts": {
     "start:web": "pnpm --filter web start",
     "build:web": "pnpm --filter web build",
-    "start:server": "pnpm --filter server start"
+    "start:server": "pnpm --filter server start",
+    "build:server": "pnpm --filter server build"
   },
   "keywords": [],
   "author": "",
