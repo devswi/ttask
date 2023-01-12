@@ -2,13 +2,13 @@ const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { dynamicWebpackConfig } = require('../scripts/webpack-tools');
+const { dynamicWebpackConfig } = require('../utils/webpack-tools');
 const { APP_PATH } = require('./constants');
 
 const generateConfigs = async () => {
     const { entry, templates } = await dynamicWebpackConfig(process.cwd());
-    const isDevelopment = process.env.NODE_ENV === 'development';
     return {
+        name: 'web',
         entry,
         output: {
             path: path.join(APP_PATH, './dist'),
@@ -17,7 +17,7 @@ const generateConfigs = async () => {
         plugins: [
             ...templates,
             new MiniCssExtractPlugin({
-                filename: `static/styles/[name]${isDevelopment ? '' : '.[contenthash:8]'}.css`,
+                filename: 'static/styles/[name].[contenthash:8].css',
             }),
             new ForkTsCheckerWebpackPlugin(),
         ],
@@ -71,9 +71,7 @@ const generateConfigs = async () => {
                     test: /\.(png|jpe?g|gif|svg|webp)$/,
                     type: 'asset',
                     generator: {
-                        filename: `static/images/[name]${
-                            isDevelopment ? '' : '.[contenthash:8]'
-                        }[ext]`,
+                        filename: 'static/images/[name].[contenthash:8][ext]',
                     },
                     parser: {
                         dataUrlCondition: {
