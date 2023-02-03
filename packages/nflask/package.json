@@ -1,27 +1,31 @@
 {
-  "name": "server",
+  "name": "@swizm/nflask",
   "version": "1.0.0",
   "private": true,
   "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc --build --clean && tsc --build tsconfig.build.json",
-    "start": "nodemon --ignore tests/ --watch src -e ts --exec \"node --inspect --require ts-node/register src/app.ts\""
+    "watch": "tsc --build --clean && tsc --build tsconfig.build.json --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "decorator",
+    "koa",
+    "@koa/router"
+  ],
   "author": "shiwei93 <stayfocusjs@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/koa": "^2.13.5",
+    "@types/glob": "^8.0.1",
     "@types/koa__router": "^12.0.0",
-    "@types/node": "^18.11.17",
-    "nodemon": "^2.0.20",
-    "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },
   "dependencies": {
     "@koa/router": "^12.0.0",
-    "@swizm/nflask": "workspace:^1.0.0",
-    "koa": "^2.14.1",
-    "koa-body": "^6.0.1"
+    "glob": "^8.1.0"
   }
 }
