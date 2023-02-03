@@ -6,5 +6,5 @@
     "experimentalDecorators": true,
     "paths": {}
   },
-  "include": ["src", "test"]
+  "include": ["src"]
 }

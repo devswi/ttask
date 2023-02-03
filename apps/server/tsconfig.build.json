@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "src",
+    "outDir": "dist",
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules", "test", "**/*.test.ts"],
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../../packages/nflask"
+    }
+  ]
+}

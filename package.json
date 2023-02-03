@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:web": "pnpm --filter web start",
-    "build:web": "pnpm --filter web build",
-    "start:server": "pnpm --filter server start",
-    "build:server": "pnpm --filter server build"
+    "build:packages": "pnpm run -r --parallel --filter \"{packages/**}\" build",
+    "build:watch": "pnpm run --parallel --filter \"{packages/**}\" watch",
+    "dev": "pnpm build:watch & pnpm run --parallel --filter \"{apps/**}\" start"
   },
   "keywords": [],
   "author": "",
