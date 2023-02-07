@@ -6,7 +6,8 @@
   "scripts": {
     "build:packages": "pnpm run -r --parallel --filter \"{packages/**}\" build",
     "build:watch": "pnpm run --parallel --filter \"{packages/**}\" watch",
-    "dev": "pnpm build:watch & pnpm run --parallel --filter \"{apps/**}\" start"
+    "dev": "pnpm build:watch & pnpm run --parallel --filter \"{apps/**}\" start",
+    "test": "pnpm run --parallel --filter \"{packages/**}\" test"
   },
   "keywords": [],
   "author": "",

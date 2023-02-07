@@ -2,9 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "rootDir": "src",
     "experimentalDecorators": true,
-    "paths": {}
+    "paths": {
+      "@nflask": ["./src"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }
