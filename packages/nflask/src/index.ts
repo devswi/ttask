@@ -4,7 +4,3 @@ export * from './router';
 export * from './decoratos/controller';
 // Decorators of Http method
 export * from './decoratos/method';
-
-export function sum(a: number, b: number) {
-    return a + b;
-}
