@@ -3,10 +3,12 @@ const { compilerOptions } = require('./tsconfig.json');
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
+    verbose: true,
+    silent: true,
     preset: 'ts-jest',
     testEnvironment: 'node',
     rootDir: './',
-    testMatch: ['<rootDir>/test/__tests__/**/*.test.ts'],
+    testRegex: '(/test/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
     moduleFileExtensions: ['ts', 'js'],
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
         prefix: '<rootDir>/',
