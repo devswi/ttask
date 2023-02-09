@@ -38,6 +38,6 @@ jobs:
         with:
           coverage-file: report.json
           base-coverage-file: report.json
-          skip-step: all
+          skip-step: install
           package-manager: pnpm
           test-script: pnpm jest
