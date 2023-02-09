@@ -90,3 +90,9 @@ describe('HTTP API Generation', () => {
         request(server).get('/api/v2/products').expect(200, done);
     });
 });
+
+describe('Load Controller Files', () => {
+    it('Get /api/v2/user should be 404 because option recursive is false', done => {
+        request(server).get('/api/v2/user').expect(404, done);
+    });
+});

@@ -38,3 +38,4 @@ jobs:
         with:
           skip-step: install
           test-script: pnpm test
+          base-coverage-file: report.json
