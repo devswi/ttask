@@ -32,7 +32,12 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
       - uses: ArtiomTr/jest-coverage-report-action@v2
         with:
+          coverage-file: report.json
+          base-coverage-file: report.json
+          skip-step: all
           package-manager: pnpm
           test-script: pnpm jest
