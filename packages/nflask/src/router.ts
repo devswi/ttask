@@ -12,7 +12,6 @@ const handleLoadDir = (router: Router, dir: string, options: LoadOptions) => {
 };
 
 const handleMap = (router: Router, DecoratedClass: any, _optinos: LoadOptions) => {
-    if (!DecoratedClass) return;
     const basePath = DecoratedClass.basePath;
     if (basePath) router.prefix(basePath);
 

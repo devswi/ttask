@@ -3,32 +3,18 @@ import glob from 'glob';
 
 const toString = Function.prototype.toString;
 
-function fnBody(fn: any) {
-    return toString
-        .call(fn)
-        .replace(/^[^{]*{\s*/, '')
-        .replace(/\s*}[^}]*$/, '');
-}
-
 // https://github.com/miguelmota/is-class/blob/master/is-class.js
 function isClass(fn: any) {
     if (typeof fn !== 'function') {
         return false;
     }
-
     if (/^class[\s{]/.test(toString.call(fn))) {
         return true;
     }
-
-    // babel.js classCallCheck() & inlined
-    const body = fnBody(fn);
-    return (
-        /classCallCheck\(/.test(body) ||
-        /TypeError\("Cannot call a class as a function"\)/.test(body)
-    );
+    return false;
 }
 
-const getFilePaths = (dir: string, recursive = true, ignore: string[] = []) => {
+const getFilePaths = (dir: string, recursive: boolean, ignore: string[]) => {
     const regex = recursive ? '**/*.[t|j]s' : '*.[t|j]s';
     const paths = glob.sync(regex, {
         cwd: dir,
@@ -50,7 +36,7 @@ const loadClass = (filepath: string) => {
 };
 
 const loadControllerClasses = (
-    dir: string = '',
+    dir: string,
     options: { recursive?: boolean; ignore?: string[] },
 ) => {
     dir = _path.resolve(dir);
