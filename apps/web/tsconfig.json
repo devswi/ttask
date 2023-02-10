@@ -10,7 +10,8 @@
       "@utils/*": ["./src/utils/*"],
       "@utils": ["./src/utils"],
       "@features/*": ["./src/features/*"],
-      "@models": ["./src/models"]
+      "@models": ["./src/models"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "exclude": ["node_modules", "**/*.test.ts"],

@@ -1,0 +1,5 @@
+@layer components {
+    .filter-tag {
+        @apply rounded-full bg-green-400 px-3 py-0.5 mr-4;
+    }
+}

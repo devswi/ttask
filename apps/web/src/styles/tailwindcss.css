@@ -1,3 +1,6 @@
+@import './app.css';
+@import './filter.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
