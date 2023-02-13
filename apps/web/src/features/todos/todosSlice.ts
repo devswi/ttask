@@ -62,7 +62,14 @@ export const fetchTodos = createAsyncThunk<Todo[]>('todos/fetchTodos', async () 
     return response.data.objects;
 });
 
-export const selectAllTodos = (state: RootState) => state.todos.entities;
+export const selectAllTodos = (state: RootState) => {
+    const {
+        filters: { status },
+        todos,
+    } = state;
+    if (status === 'all') return todos.entities;
+    return todos.entities.filter(todo => todo.status === status);
+};
 
 export const { added, statusChanged, priorityChanged } = todosSlice.actions;
 

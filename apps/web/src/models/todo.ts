@@ -1,16 +1,23 @@
 export enum Status {
     // 任务待处理
-    Pending = 'pending',
+    Pending,
     // 任务进行中
-    OnProgress = 'on progress',
+    OnProgress,
     // 任务完成
-    Completed = 'completed',
+    Completed,
 }
 
 export type AllStatus = 'all' | Status;
 
 const PRIORITY = ['low', 'medium', 'high', 'urgent'] as const;
 export type Priority = typeof PRIORITY[number];
+
+export const PRIORITY_COLORS: { [key in Priority]: string } = {
+    ['low']: 'bg-low',
+    ['medium']: 'bg-medium',
+    ['high']: 'bg-high',
+    ['urgent']: 'bg-urgent',
+};
 
 export interface Todo {
     id: string;

@@ -9,14 +9,14 @@ const StatusFilter = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     return (
-        <section className="flex items-center mt-6 mb-4 overflow-scroll">
-            {['all'].concat(Object.keys(Status)).map(key => (
+        <section className="flex items-center my-6">
+            {['all', 0, 1, 2].map(key => (
                 <div
                     key={key}
                     className={`filter-tag ${currentStatus === key ? 'selected' : ''}`}
                     onClick={() => dispatch(statusFilterChanged(key as AllStatus))}
                 >
-                    {formatFilterTag(key)}
+                    {formatFilterTag(Status[key as Status] || 'all')}
                 </div>
             ))}
         </section>

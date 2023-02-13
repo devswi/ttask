@@ -4,7 +4,7 @@
   "private": true,
   "description": "",
   "scripts": {
-    "build": "tsc --build --clean && tsc --build tsconfig.build.json",
+    "build": "tsc --build --clean && rm -rf *.tsbuildinfo && tsc --build tsconfig.build.json",
     "start": "nodemon --ignore tests/ --watch src -e ts --exec \"node --inspect --require ts-node/register src/app.ts\""
   },
   "keywords": [],
