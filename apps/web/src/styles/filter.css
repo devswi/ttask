@@ -1,0 +1,9 @@
+@layer components {
+    .filter-tag {
+        @apply rounded-full px-2 py-0.5 mr-1.5 font-medium border border-transparent hover:border-gray-300;
+    }
+
+    .selected {
+        @apply bg-blue-400 text-white hover:border-transparent;
+    }
+}

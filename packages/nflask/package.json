@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --build --clean && tsc --build tsconfig.build.json",
+    "build": "tsc --build --clean && rm -rf *.tsbuildinfo && tsc --build tsconfig.build.json",
     "watch": "tsc --build --clean && tsc --build tsconfig.build.json --watch"
   },
   "keywords": [

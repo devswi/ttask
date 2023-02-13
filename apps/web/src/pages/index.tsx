@@ -1,21 +1,15 @@
 import { renderDom } from '@utils/render-react';
-import { avatar } from 'assets/images';
+import Header from '@components/Header';
+import StatusFilter from '@features/filters/StatusFilter';
+import TodosList from '@features/todos/TodosList';
 
 const Home = () => {
     return (
-        <section>
-            <div className="text-3xl font-bold text-yellow-500">Hello World!</div>
-            <img className="w-20" src={avatar} />
-
-            <div className="flex mt-2">
-                <a href="/about" className="text-red-800">
-                    About us
-                </a>
-                <a href="/docs" className="ml-2">
-                    Docs
-                </a>
-            </div>
-        </section>
+        <div className="mx-auto my-2 max-w-[85%]">
+            <Header />
+            <StatusFilter />
+            <TodosList />
+        </div>
     );
 };
 
