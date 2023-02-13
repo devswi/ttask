@@ -1,11 +1,19 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Status, Todo } from '@models';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { Status, Todo } from '@models';
+import { RootState } from '@app/store';
+import { getAllTodos } from '@api/todos';
 
-type Todos = { entities: Todo[] };
+type Todos = {
+    entities: Todo[];
+    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    error: string | null;
+};
 
 const initialState: Todos = {
     entities: [],
+    status: 'idle',
+    error: null,
 };
 
 const todosSlice = createSlice({
@@ -33,7 +41,28 @@ const todosSlice = createSlice({
             if (todo) todo.priority = priority;
         },
     },
+    extraReducers(builder) {
+        builder
+            .addCase(fetchTodos.pending, state => {
+                state.status = 'loading';
+            })
+            .addCase(fetchTodos.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.entities = state.entities.concat(action.payload);
+            })
+            .addCase(fetchTodos.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message ?? 'Fetch request failed';
+            });
+    },
 });
+
+export const fetchTodos = createAsyncThunk<Todo[]>('todos/fetchTodos', async () => {
+    const response = await getAllTodos();
+    return response.data.objects;
+});
+
+export const selectAllTodos = (state: RootState) => state.todos.entities;
 
 export const { added, statusChanged, priorityChanged } = todosSlice.actions;
 
