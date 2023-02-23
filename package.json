@@ -8,7 +8,12 @@
     "build:watch": "pnpm run --parallel --filter \"{packages/**}\" watch",
     "dev": "pnpm build:watch & pnpm run --parallel --filter \"{apps/**}\" start",
     "test": "jest",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down",
     "prepare": "husky install"
+  },
+  "prisma": {
+    "schema": "apps/server/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
