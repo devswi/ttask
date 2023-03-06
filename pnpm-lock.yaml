@@ -14,6 +14,7 @@ importers:
       eslint-config-prettier: ^8.5.0
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-react: ^7.31.11
+      eslint-plugin-react-hooks: ^4.6.0
       husky: ^8.0.3
       jest: ^29.4.1
       lint-staged: ^13.1.1
@@ -33,6 +34,7 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.30.0
       eslint-plugin-prettier: 4.2.1_kl4pe43v5b43npmso5hoplpbyi
       eslint-plugin-react: 7.31.11_eslint@8.30.0
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.30.0
       husky: 8.0.3
       jest: 29.4.1_xgdmd3tdlagpkcvgycprrn3igm
       lint-staged: 13.1.1
@@ -46,6 +48,7 @@ importers:
     specifiers:
       '@koa/cors': ^4.0.0
       '@koa/router': ^12.0.0
+      '@prisma/client': ^4.10.1
       '@swizm/nflask': workspace:^1.0.0
       '@types/koa': ^2.13.5
       '@types/koa__cors': ^3.3.0
@@ -54,11 +57,13 @@ importers:
       koa: ^2.14.1
       koa-body: ^6.0.1
       nodemon: ^2.0.20
+      prisma: ^4.10.1
       ts-node: ^10.9.1
       typescript: ^4.9.4
     dependencies:
       '@koa/cors': 4.0.0
       '@koa/router': 12.0.0
+      '@prisma/client': 4.10.1_prisma@4.10.1
       '@swizm/nflask': link:../../packages/nflask
       koa: 2.14.1
       koa-body: 6.0.1
@@ -68,6 +73,7 @@ importers:
       '@types/koa__router': 12.0.0
       '@types/node': 18.11.17
       nodemon: 2.0.20
+      prisma: 4.10.1
       ts-node: 10.9.1_moeqx3xmzxqxagf2sz6mqkbb7m
       typescript: 4.9.4
 
@@ -2022,6 +2028,28 @@ packages:
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
+
+  /@prisma/client/4.10.1_prisma@4.10.1:
+    resolution: {integrity: sha512-VonXLJZybdt8e5XZH5vnIGCRNnIh6OMX1FS3H/yzMGLT3STj5TJ/OkMcednrvELgk8PK89Vo3aSh51MWNO0axA==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19
+      prisma: 4.10.1
+    dev: false
+
+  /@prisma/engines-version/4.10.1-2.aead147aa326ccb985dcfed5b065b4fdabd44b19:
+    resolution: {integrity: sha512-tsjTho7laDhf9EJ9EnDxAPEf7yrigSMDhniXeU4YoWc7azHAs4GPxRi2P9LTFonmHkJLMOLjR77J1oIP8Ife1w==}
+    dev: false
+
+  /@prisma/engines/4.10.1:
+    resolution: {integrity: sha512-B3tcTxjx196nuAu1GOTKO9cGPUgTFHYRdkPkTS4m5ptb2cejyBlH9X7GOfSt3xlI7p4zAJDshJP4JJivCg9ouA==}
+    requiresBuild: true
 
   /@reduxjs/toolkit/1.9.2_k4ae6lp43ej6mezo3ztvx6pykq:
     resolution: {integrity: sha512-5ZAZ7hwAKWSii5T6NTPmgIBUqyVdlDs+6JjThz6J6dmHLDm6zCzv2OjHIFAi3Vvs1qjmXU0bm6eBojukYXjVMQ==}
@@ -4078,6 +4106,15 @@ packages:
       eslint-config-prettier: 8.5.0_eslint@8.30.0
       prettier: 2.8.1
       prettier-linter-helpers: 1.0.0
+    dev: true
+
+  /eslint-plugin-react-hooks/4.6.0_eslint@8.30.0:
+    resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+    dependencies:
+      eslint: 8.30.0
     dev: true
 
   /eslint-plugin-react/7.31.11_eslint@8.30.0:
@@ -6931,6 +6968,14 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
     dev: true
+
+  /prisma/4.10.1:
+    resolution: {integrity: sha512-0jDxgg+DruB1kHVNlcspXQB9au62IFfVg9drkhzXudszHNUAQn0lVuu+T8np0uC2z1nKD5S3qPeCyR8u5YFLnA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.10.1
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}

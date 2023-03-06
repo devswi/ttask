@@ -15,6 +15,15 @@ describe('HTTP API Generation', () => {
                 done();
             });
     });
+    it('GET /api/v1/user should return 200', done => {
+        request(server)
+            .get('/api/v1/user')
+            .expect(200)
+            .end(err => {
+                if (err) return done(err);
+                done();
+            });
+    });
     it('Get /api/v1/products/:id should return data with product_id in path', done => {
         const id = 'aaaaa';
         request(server)
