@@ -1,5 +1,6 @@
 import KoaRouter, { RouterOptions, RouterContext as Context, Middleware } from '@koa/router';
 import { loadControllerClasses } from './utils/load';
+import { normalizePath } from './utils/normailixe';
 import { RESERVED_METHODS } from './constants';
 
 interface LoadOptions {
@@ -13,7 +14,6 @@ const handleLoadDir = (router: Router, dir: string, options: LoadOptions) => {
 
 const handleMap = (router: Router, DecoratedClass: any, _optinos: LoadOptions) => {
     const basePath = DecoratedClass.basePath;
-    if (basePath) router.prefix(basePath);
 
     const staticMethods = Object.getOwnPropertyNames(DecoratedClass)
         .filter(method => !RESERVED_METHODS.includes(method))
@@ -32,7 +32,11 @@ const handleMap = (router: Router, DecoratedClass: any, _optinos: LoadOptions) =
         .forEach(item => {
             let baseMiddlewares: Middleware[] = DecoratedClass.middlewares ?? [];
             const { method, path, middlewares } = item;
-            (router as any)[method](path, ...baseMiddlewares, ...middlewares);
+            (router as any)[method](
+                normalizePath(basePath + path),
+                ...baseMiddlewares,
+                ...middlewares,
+            );
         });
 };
 

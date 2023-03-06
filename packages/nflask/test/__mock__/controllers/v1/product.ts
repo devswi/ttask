@@ -1,4 +1,5 @@
 import { Controller, Delete, Get, RouterContext, Post, Put } from '@nflask';
+import koaBody from 'koa-body';
 import { setResponseTime } from '../../middlewares';
 
 @Controller('/products')
@@ -27,7 +28,7 @@ class Product {
         };
     }
 
-    @Post('/')
+    @Post('/', koaBody())
     async createProduct(ctx: RouterContext) {
         const body = ctx.request.body;
         if (body) {
